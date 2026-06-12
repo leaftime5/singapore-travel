@@ -534,14 +534,14 @@ function drawRouteDiagram(cid, stops, color) {
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <button class="nav-btn active" onclick="scrollTo('overview', this)">📋 概览</button>
-    <button class="nav-btn" onclick="scrollTo('flight', this)">✈️ 机票&住宿</button>
-    <button class="nav-btn" onclick="scrollTo('itinerary', this)">🗓️ 每日行程</button>
-    <button class="nav-btn" onclick="scrollTo('map', this)">🗺️ 地图</button>
-    <button class="nav-btn" onclick="scrollTo('transport', this)">🚌 交通指南</button>
-    <button class="nav-btn" onclick="scrollTo('pitfalls', this)">⚠️ 避坑指南</button>
-    <button class="nav-btn" onclick="scrollTo('checklist', this)">✅ 必备清单</button>
-    <button class="nav-btn" onclick="scrollTo('budget', this)">💰 费用参考</button>
+    <button class="nav-btn active" onclick="scrollToSection('overview', this)">📋 概览</button>
+    <button class="nav-btn" onclick="scrollToSection('flight', this)">✈️ 机票&住宿</button>
+    <button class="nav-btn" onclick="scrollToSection('itinerary', this)">🗓️ 每日行程</button>
+    <button class="nav-btn" onclick="scrollToSection('map', this)">🗺️ 地图</button>
+    <button class="nav-btn" onclick="scrollToSection('transport', this)">🚌 交通指南</button>
+    <button class="nav-btn" onclick="scrollToSection('pitfalls', this)">⚠️ 避坑指南</button>
+    <button class="nav-btn" onclick="scrollToSection('checklist', this)">✅ 必备清单</button>
+    <button class="nav-btn" onclick="scrollToSection('budget', this)">💰 费用参考</button>
   </div>
 </nav>
 
@@ -1629,8 +1629,8 @@ function drawRouteDiagram(cid, stops, color) {
     }
   }
 
-  // Nav scroll
-  function scrollTo(id, btn) {
+  // Nav scroll — scrollTo is native window method, so use different name
+  function scrollToSection(id, btn) {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
