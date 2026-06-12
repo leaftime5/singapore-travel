@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🦁 新加坡暑假旅游攻略 · 2026.7.16-7.22</title>
+<style>
+  :root {
+    --red: #e63946;
+    --orange: #f4a261;
+    --yellow: #e9c46a;
+    --green: #2a9d8f;
+    --teal: #00b4d8;
+    --blue: #0077b6;
+    --purple: #7b2d8b;
+    --dark: #1a1a2e;
+    --light: #f8f9fa;
+    --card-bg: #ffffff;
+    --shadow: 0 4px 20px rgba(0,0,0,0.1);
+    --border-r: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, sans-serif;
+    background: linear-gradient(135deg, #e8f4f8 0%, #f0f7f4 50%, #fef9f0 100%);
+    color: #333;
+    min-height: 100vh;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    background: linear-gradient(135deg, #0077b6 0%, #00b4d8 40%, #2a9d8f 100%);
+    color: white;
+    padding: 60px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.08) 0%, transparent 60%);
+    animation: pulse 6s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{transform:scale(1)} 50%{transform:scale(1.1)} }
+  .hero-emoji { font-size: 72px; margin-bottom: 16px; display: block; animation: float 3s ease-in-out infinite; }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  .hero h1 { font-size: 2.4rem; font-weight: 800; margin-bottom: 10px; }
+  .hero-sub { font-size: 1.1rem; opacity: 0.9; margin-bottom: 24px; }
+  .hero-tags { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .hero-tag {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.4);
+    border-radius: 20px;
+    padding: 6px 16px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ===== NAV ===== */
+  .nav {
+    background: white;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    padding: 0 20px;
+  }
+  .nav-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    padding: 12px 0;
+    scrollbar-width: none;
+  }
+  .nav-inner::-webkit-scrollbar { display: none; }
+  .nav-btn {
+    background: none;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.88rem;
+    white-space: nowrap;
+    color: #555;
+    transition: all 0.2s;
+    font-family: inherit;
+  }
+  .nav-btn:hover, .nav-btn.active {
+    background: var(--blue);
+    color: white;
+  }
+
+  /* ===== MAIN LAYOUT ===== */
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+  section { margin-bottom: 60px; }
+  .section-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--dark);
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: linear-gradient(90deg, var(--teal), transparent);
+    border-radius: 2px;
+  }
+
+  /* ===== FLIGHT CARD ===== */
+  .flight-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media(max-width:600px){ .flight-grid { grid-template-columns: 1fr; } }
+  .flight-card {
+    background: white;
+    border-radius: var(--border-r);
+    padding: 24px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid;
+    position: relative;
+    overflow: hidden;
+  }
+  .flight-card.depart { border-color: var(--blue); }
+  .flight-card.return { border-color: var(--green); }
+  .flight-card::before {
+    content: '';
+    position: absolute;
+    top: 0; right: 0;
+    width: 80px; height: 80px;
+    border-radius: 50%;
+    opacity: 0.06;
+  }
+  .flight-card.depart::before { background: var(--blue); transform: translate(20px,-20px); }
+  .flight-card.return::before { background: var(--green); transform: translate(20px,-20px); }
+  .flight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 10px;
+    margin-bottom: 12px;
+  }
+  .depart .flight-badge { background: #e8f4ff; color: var(--blue); }
+  .return .flight-badge { background: #e8f8f5; color: var(--green); }
+  .flight-route {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .flight-city { font-size: 1.3rem; font-weight: 800; }
+  .flight-arrow { font-size: 1.4rem; opacity: 0.5; }
+  .flight-info { font-size: 0.9rem; color: #666; line-height: 1.6; }
+  .flight-time { font-size: 1.4rem; font-weight: 700; color: var(--dark); }
+
+  /* ===== HOTEL CARD ===== */
+  .hotel-card {
+    background: white;
+    border-radius: var(--border-r);
+    padding: 28px;
+    box-shadow: var(--shadow);
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    border-left: 6px solid var(--orange);
+  }
+  .hotel-icon { font-size: 3rem; }
+  .hotel-name { font-size: 1.3rem; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
+  .hotel-detail { font-size: 0.9rem; color: #666; line-height: 1.8; }
+  .hotel-tip {
+    margin-top: 10px;
+    background: #fff8e7;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    color: #a0522d;
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-left: 40px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 16px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, #0077b6, #2a9d8f, #e63946, #7b2d8b, #f4a261, #e9c46a, #6c757d);
+    border-radius: 3px;
+  }
+  .day-block { position: relative; margin-bottom: 40px; }
+  .day-dot {
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: white;
+    border: 3px solid;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 700;
+    z-index: 2;
+  }
+  .day-header {
+    background: white;
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-left: 4px solid;
+  }
+  .day-number { font-size: 0.8rem; font-weight: 600; opacity: 0.7; }
+  .day-title { font-size: 1.15rem; font-weight: 700; flex: 1; }
+  .day-theme { font-size: 0.85rem; opacity: 0.7; }
+
+  .spots-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+  .spot-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .spot-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+  .spot-icon { font-size: 1.8rem; flex-shrink: 0; }
+  .spot-time { font-size: 0.78rem; font-weight: 600; color: var(--blue); margin-bottom: 2px; }
+  .spot-name { font-size: 0.95rem; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
+  .spot-desc { font-size: 0.82rem; color: #666; line-height: 1.5; }
+  .spot-transport {
+    margin-top: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #f0f7ff;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 0.78rem;
+    color: var(--blue);
+  }
+  .meal-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 6px;
+    background: #fff4e6;
+    border-radius: 6px;
+    padding: 2px 8px;
+    font-size: 0.78rem;
+    color: #c05621;
+  }
+
+  /* ===== MAP SECTION ===== */
+  .map-container {
+    background: white;
+    border-radius: var(--border-r);
+    padding: 24px;
+    box-shadow: var(--shadow);
+  }
+  .map-tabs { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+  .map-tab {
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 2px solid #e0e0e0;
+    background: none;
+    cursor: pointer;
+    font-size: 0.88rem;
+    font-family: inherit;
+    color: #555;
+    transition: all 0.2s;
+  }
+  .map-tab.active { border-color: var(--blue); color: white; background: var(--blue); }
+  .map-filter-btn { padding:6px 14px; border-radius:20px; border:2px solid #ddd; background:white; color:#555; cursor:pointer; font-family:inherit; font-size:0.82rem; transition:all 0.2s; }
+  .map-filter-btn.active { color:white !important; }
+  .map-filter-btn:hover { opacity:0.85; }
+  #sg-map {
+    width: 100%;
+    height: 420px;
+    border-radius: 12px;
+    border: none;
+    display: block;
+  }
+  .map-legend {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.82rem;
+    color: #555;
+  }
+  .legend-dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* ===== TRANSPORT ===== */
+  .transport-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 18px; }
+  .transport-card {
+    background: white;
+    border-radius: var(--border-r);
+    padding: 22px;
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.2s;
+  }
+  .transport-card:hover { transform: translateY(-4px); }
+  .transport-card .t-icon { font-size: 2.5rem; margin-bottom: 10px; }
+  .transport-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
+  .transport-card p { font-size: 0.84rem; color: #666; line-height: 1.6; }
+  .transport-card .t-cost {
+    display: inline-block;
+    margin-top: 10px;
+    background: #e8f8f5;
+    color: var(--green);
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 0.82rem;
+    font-weight: 600;
+  }
+
+  /* ===== AVOID PITFALLS ===== */
+  .pitfall-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 18px; }
+  .pitfall-card {
+    background: white;
+    border-radius: var(--border-r);
+    padding: 22px;
+    box-shadow: var(--shadow);
+    border-top: 4px solid var(--red);
+    position: relative;
+  }
+  .pitfall-icon { font-size: 2rem; margin-bottom: 10px; }
+  .pitfall-card h3 { font-size: 1rem; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+  .pitfall-card p { font-size: 0.84rem; color: #555; line-height: 1.6; }
+  .pitfall-tip {
+    margin-top: 10px;
+    background: #fff5f5;
+    border-radius: 8px;
+    padding: 8px 12px;
+    font-size: 0.82rem;
+    color: var(--red);
+    border-left: 3px solid var(--red);
+  }
+
+  /* ===== CHECKLIST ===== */
+  .checklist-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .check-item {
+    background: white;
+    border-radius: 10px;
+    padding: 14px 16px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    transition: all 0.2s;
+    user-select: none;
+  }
+  .check-item:hover { transform: scale(1.02); }
+  .check-item.checked { background: #e8f8f5; }
+  .check-box {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    margin-top: 2px;
+  }
+  .check-item.checked .check-box {
+    background: var(--green);
+    border-color: var(--green);
+    color: white;
+  }
+  .check-item.urgent .check-box { border-color: var(--red); }
+  .check-item.urgent:not(.checked) .check-label { color: var(--red); font-weight: 600; }
+  .check-label { font-size: 0.88rem; color: #333; line-height: 1.4; }
+
+  /* ===== BUDGET ===== */
+  .budget-card {
+    background: white;
+    border-radius: var(--border-r);
+    padding: 28px;
+    box-shadow: var(--shadow);
+  }
+  .budget-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+  .budget-table th {
+    background: var(--blue);
+    color: white;
+    padding: 10px 16px;
+    text-align: left;
+    font-size: 0.9rem;
+  }
+  .budget-table th:first-child { border-radius: 8px 0 0 0; }
+  .budget-table th:last-child { border-radius: 0 8px 0 0; text-align: right; }
+  .budget-table td { padding: 10px 16px; border-bottom: 1px solid #f0f0f0; font-size: 0.88rem; overflow-wrap: break-word; }
+  .budget-table td:last-child { text-align: right; font-weight: 600; color: var(--blue); }
+  .budget-table tr:hover td { background: #f8fbff; }
+  .budget-total td {
+    font-weight: 700;
+    color: var(--dark);
+    font-size: 0.95rem;
+    border-top: 2px solid var(--blue);
+  }
+
+  /* ===== TIPS BAR ===== */
+  .tips-bar {
+    background: linear-gradient(135deg, #fff8e1, #fff3cd);
+    border: 1px solid #ffc107;
+    border-radius: var(--border-r);
+    padding: 20px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    margin-bottom: 30px;
+  }
+  .tips-icon { font-size: 2rem; flex-shrink: 0; }
+  .tips-content h3 { font-size: 1rem; font-weight: 700; color: #856404; margin-bottom: 6px; }
+  .tips-content p { font-size: 0.88rem; color: #664d03; line-height: 1.6; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 30px;
+    font-size: 0.88rem;
+    opacity: 0.8;
+  }
+
+  /* ===== SCROLL ANIMATION ===== */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s, transform 0.5s;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width: 768px) {
+    .hero h1 { font-size: 1.8rem; }
+    .container { padding: 24px 16px; }
+    .timeline { padding-left: 30px; }
+  }
+</style>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<style>
+.route-diagram { margin:12px 0; background:white; border-radius:12px; padding:14px 10px 8px; overflow-x:auto; box-shadow:0 1px 6px rgba(0,0,0,0.05); }
+.route-diagram svg { display:block; min-width:100%; }
+.route-diagram-title { font-size:0.9rem; font-weight:700; color:#555; margin-bottom:8px; }
+</style>
+<script>
+function drawRouteDiagram(cid, stops, color) {
+  var c = document.getElementById(cid);
+  var R=11, gap=130, pad=36;
+  var n=stops.length, W=n*gap + pad*2, H=104;
+  var lineY=32, nameY=64, tportY=17;
+  var svg='<svg width="'+W+'" height="'+H+'" viewBox="0 0 '+W+' '+H+'">';
+  // 连线
+  var x1=pad, x2=pad+(n-1)*gap;
+  svg+='<line x1="'+x1+'" y1="'+lineY+'" x2="'+x2+'" y2="'+lineY+'" stroke="'+color+'" stroke-width="4" stroke-dasharray="10 6" opacity="0.85"/>';
+  for (var i=0;i<n;i++){
+    var x=pad+i*gap;
+    var bg=(i===0||i===n-1)?color:'#fff';
+    var fg=(i===0||i===n-1)?'#fff':color;
+    svg+='<circle cx="'+x+'" cy="'+lineY+'" r="'+R+'" fill="'+bg+'" stroke="'+color+'" stroke-width="3"/>';
+    svg+='<text x="'+x+'" y="'+(lineY+5)+'" text-anchor="middle" font-size="12" font-weight="800" fill="'+fg+'" style="font-family:PingFang SC,Microsoft YaHei,sans-serif">'+(i+1)+'</text>';
+    svg+='<text x="'+x+'" y="'+nameY+'" text-anchor="middle" font-size="11" fill="#333" style="font-family:PingFang SC,Microsoft YaHei,sans-serif">'+stops[i].name+'</text>';
+    if (stops[i].time)
+      svg+='<text x="'+x+'" y="'+(nameY+16)+'" text-anchor="middle" font-size="10" fill="#888">'+stops[i].time+'</text>';
+    if (i<n-1 && stops[i].transport){
+      var mx=x+gap/2;
+      svg+='<rect x="'+(mx-38)+'" y="0" width="76" height="20" rx="10" fill="'+color+'" opacity="0.12"/>';
+      svg+='<text x="'+mx+'" y="'+tportY+'" text-anchor="middle" font-size="10.5" fill="'+color+'" font-weight="700">'+stops[i].transport+'</text>';
+    }
+  }
+  // 终点箭头
+  if(n>=2){ var lx=pad+(n-1)*gap; svg+='<polygon points="'+(lx-12)+','+(lineY-6)+' '+(lx-5)+','+lineY+' '+(lx-12)+','+(lineY+6)+'" fill="'+color+'"/>'; }
+  svg+='</svg>';
+  c.innerHTML=svg;
+}
+</script>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <span class="hero-emoji">🦁</span>
+    <h1>新加坡暑假旅游攻略</h1>
+  <p class="hero-sub">2026年7月16日 — 7月22日 · 北京出发 · 6晚7天 · <strong>2家庭6人同行</strong></p>
+  <div class="hero-tags">
+    <span class="hero-tag">✈️ 国航CA889/CA976</span>
+    <span class="hero-tag">🏨 voco乌节路酒店</span>
+    <span class="hero-tag">👨‍👩‍👧‍👦 2家庭·双娃亲子</span>
+    <span class="hero-tag">🦁 动物园·海洋馆</span>
+    <span class="hero-tag">🌿 自然探索</span>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <button class="nav-btn active" onclick="scrollTo('overview')">📋 概览</button>
+    <button class="nav-btn" onclick="scrollTo('flight')">✈️ 机票&住宿</button>
+    <button class="nav-btn" onclick="scrollTo('itinerary')">🗓️ 每日行程</button>
+    <button class="nav-btn" onclick="scrollTo('map')">🗺️ 地图</button>
+    <button class="nav-btn" onclick="scrollTo('transport')">🚌 交通指南</button>
+    <button class="nav-btn" onclick="scrollTo('pitfalls')">⚠️ 避坑指南</button>
+    <button class="nav-btn" onclick="scrollTo('checklist')">✅ 必备清单</button>
+    <button class="nav-btn" onclick="scrollTo('budget')">💰 费用参考</button>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- OVERVIEW -->
+  <section id="overview" class="fade-in">
+    <h2 class="section-title">📋 行程概览</h2>
+    <div class="tips-bar">
+      <div class="tips-icon">💡</div>
+      <div class="tips-content">
+        <h3>出行提示 · 6人团体出行</h3>
+        <p>新加坡对中国公民实行免签政策（30天），无需提前申请签证。新加坡属热带气候，全年高温多雨，7月平均气温27-33°C，请做好防晒防雨准备。新元与人民币汇率约 <strong>1 SGD ≈ 5.3 CNY</strong>。<br>
+        <strong>👨‍👩‍👧‍👦 团体出行建议：</strong>2个家庭各有一位小朋友，行程中可灵活分开行动（如孩子午睡时部分大人继续游览），约定好集合地点和使用微信群实时沟通。6人坐公共交通出行（地铁/公交），关注实时公交动态（如Singapore Bus Guide APP）
+      </div>
+    </div>
+
+    <!-- Overview Timeline Visual -->
+    <div style="background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);overflow-x:auto;">
+      <div style="min-width:700px;">
+        <div style="display:flex;gap:0;margin-bottom:12px;">
+          <div style="width:80px;flex-shrink:0;"></div>
+          <div style="flex:1;display:flex;">
+            <div style="flex:1;text-align:center;font-size:0.78rem;color:#888;padding-bottom:8px;border-bottom:2px solid #e0e0e0;">7/16 周四</div>
+            <div style="flex:1;text-align:center;font-size:0.78rem;color:#888;padding-bottom:8px;border-bottom:2px solid #e0e0e0;">7/17 周五</div>
+            <div style="flex:1;text-align:center;font-size:0.78rem;color:#888;padding-bottom:8px;border-bottom:2px solid #e0e0e0;">7/18 周六</div>
+            <div style="flex:1;text-align:center;font-size:0.78rem;color:#888;padding-bottom:8px;border-bottom:2px solid #e0e0e0;">7/19 周日</div>
+            <div style="flex:1;text-align:center;font-size:0.78rem;color:#888;padding-bottom:8px;border-bottom:2px solid #e0e0e0;">7/20 周一</div>
+            <div style="flex:1;text-align:center;font-size:0.78rem;color:#888;padding-bottom:8px;border-bottom:2px solid #e0e0e0;">7/21 周二</div>
+            <div style="flex:1;text-align:center;font-size:0.78rem;color:#888;padding-bottom:8px;border-bottom:2px solid #e0e0e0;">7/22 周三</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:0;align-items:stretch;">
+          <div style="width:80px;flex-shrink:0;display:flex;flex-direction:column;gap:4px;justify-content:center;">
+            <div style="font-size:0.78rem;color:#888;text-align:right;padding-right:10px;line-height:2.2;">主题</div>
+          </div>
+          <div style="flex:1;display:flex;gap:4px;">
+            <div style="flex:1;background:linear-gradient(135deg,#0077b6,#00b4d8);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+              <span>✈️</span><span>抵达</span><span>星耀樟宜</span>
+            </div>
+            <div style="flex:1;background:linear-gradient(135deg,#2a9d8f,#52b788);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+              <span>🦁</span><span>鱼尾狮</span><span>滨海湾</span>
+            </div>
+            <div style="flex:1;background:linear-gradient(135deg,#e63946,#f4a261);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+              <span>🎢</span><span>圣淘沙</span><span>海洋馆</span>
+            </div>
+            <div style="flex:1;background:linear-gradient(135deg,#7b2d8b,#9d4edd);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+              <span>🌲</span><span>麦里芝</span><span>森林徒步</span>
+            </div>
+            <div style="flex:1;background:linear-gradient(135deg,#f4a261,#e76f51);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+              <span>🐼</span><span>动物园</span><span>河川生态园</span>
+            </div>
+            <div style="flex:1;background:linear-gradient(135deg,#e9c46a,#f4a261);border-radius:8px;padding:10px 6px;text-align:center;color:#333;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+              <span>🌸</span><span>哈芝巷</span><span>植物园</span>
+            </div>
+            <div style="flex:1;background:linear-gradient(135deg,#adb5bd,#6c757d);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+              <span>🏠</span><span>返程</span><span>北京</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FLIGHT & HOTEL -->
+  <section id="flight" class="fade-in">
+    <h2 class="section-title">✈️ 机票 & 住宿</h2>
+    <div class="flight-grid" style="margin-bottom:20px;">
+      <div class="flight-card depart">
+        <div class="flight-badge">✈️ 去程</div>
+        <div class="flight-route">
+          <span class="flight-city">北京</span>
+          <span class="flight-arrow">→</span>
+          <span class="flight-city">新加坡</span>
+        </div>
+        <div class="flight-time">10:00 → 16:25</div>
+        <div class="flight-info">
+          📅 2026年7月16日<br>
+          🛫 首都机场 T3 出发<br>
+          🛬 樟宜机场 T1 到达<br>
+          ✈️ 中国国航 CA889<br>
+          ⏱ 飞行约 6小时25分<br>
+          👥 6人同行（建议提前网上值机选连座）
+        </div>
+      </div>
+      <div class="flight-card return">
+        <div class="flight-badge">🔙 返程</div>
+        <div class="flight-route">
+          <span class="flight-city">新加坡</span>
+          <span class="flight-arrow">→</span>
+          <span class="flight-city">北京</span>
+        </div>
+        <div class="flight-time">09:00 → 15:15</div>
+        <div class="flight-info">
+          📅 2026年7月22日<br>
+          🛫 樟宜机场 T1 出发<br>
+          🛬 首都机场 T3 到达<br>
+          ✈️ 中国国航 CA976<br>
+          ⏱ 飞行约 6小时15分<br>
+          👥 6人同行（7:00前到机场）
+        </div>
+      </div>
+    </div>
+
+    <div class="hotel-card">
+      <div class="hotel-icon">🏨</div>
+      <div style="flex:1;">
+        <div class="hotel-name">新加坡乌节路 voco 酒店（洲际旗下）</div>
+        <div class="hotel-detail">
+          📅 入住：2026-07-16 &nbsp;|&nbsp; 退房：2026-07-22（6晚）<br>
+          🛏 豪华特大床房（高层）· <strong style="color:#e63946;">2间</strong>（每个家庭1间）<br>
+          📍 乌节路 Orchard Road — 新加坡核心购物区，交通极为便利<br>
+          🚇 步行约5分钟可达 Orchard MRT 站<br>
+          👨‍👩‍👧 建议预订时备注"相邻房间"，方便两个家庭互相照应
+        </div>
+        <div class="hotel-tip">
+          💡 预订2间房建议直接电话酒店或通过洲际官网预订（比OTA平台更容易安排相邻房）。高层房间可欣赏城市夜景，入住后优先要求高楼层景观房。酒店健身房/游泳池可充分利用（D4下午安排戏水休息，两个家庭的孩子可一起玩水）。
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ITINERARY -->
+  <section id="itinerary" class="fade-in">
+    <h2 class="section-title">🗓️ 每日详细行程</h2>
+    <div class="timeline">
+
+      <!-- Day 1 -->
+      <div class="day-block">
+        <div class="day-dot" style="border-color:#0077b6;color:#0077b6;">D1</div>
+        <div class="day-header" style="border-color:#0077b6;">
+          <span style="font-size:1.5rem;">✈️</span>
+          <div>
+            <div class="day-number">7月16日 · 周四</div>
+            <div class="day-title">抵达新加坡 · 星耀樟宜探索</div>
+          </div>
+          <div class="day-theme">🎯 今日重点：入境 + Jewel打卡</div>
+        </div>
+        
+
+      <div class="route-diagram">
+        <div class="route-diagram-title">🚌 D1 乘车路线</div>
+        <div id="route-d1"></div>
+      </div>
+      <script>drawRouteDiagram("route-d1", [{"name": "北京首都T3", "time": "出发", "transport": "✈️ CA889"}, {"name": "樟宜T1到达", "time": "16:25", "transport": "🚶 步行连通"}, {"name": "星耀樟宜", "time": "约2-3h", "transport": "🚇 MRT或🚗 Grab"}, {"name": "voco酒店", "time": "入住", "transport": ""}], "#0077b6");</script>
+
+      <div class="spots-grid">
+          <div class="spot-card">
+            <div class="spot-icon">🛫</div>
+            <div>
+              <div class="spot-time">10:00</div>
+              <div class="spot-name">北京首都机场T3出发</div>
+              <div class="spot-desc">国航CA889，建议提前3小时到机场（7:00前到达）。提前网上值机选靠窗座位，孩子可欣赏起飞风景。</div>
+              <span class="transport-tag" style="display:inline-flex;align-items:center;gap:4px;background:#f0f7ff;border-radius:6px;padding:2px 8px;font-size:0.78rem;color:#0077b6;margin-top:6px;">✈️ 国航CA889</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🌊</div>
+            <div>
+              <div class="spot-time">16:25 抵达</div>
+              <div class="spot-name">星耀樟宜 Jewel Changi</div>
+              <div class="spot-desc">世界最高室内瀑布（40m），免费参观！<strong>从T1步行2分钟即达</strong>（连通不用出机场）。SKYtrain免费小火车联通各航站楼，森林谷步道约3小时逛完。</div>
+              <span class="meal-tag">🍜 机场内可先吃晚饭</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🚗</div>
+            <div>
+              <div class="spot-time">约 20:00</div>
+              <div class="spot-name">前往酒店入住</div>
+              <div class="spot-desc">樟宜机场→乌节路约30分钟。6人需打 <strong>Grab 6-seater（6座车，SGD 35-45）</strong> 或2辆普通Grab。不建议机场出租车（等车慢且6人需两辆）。</div>
+              <span class="spot-transport">🚇也可MRT樟宜→欧南园换乘→乌节路，约50分钟</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-block">
+        <div class="day-dot" style="border-color:#2a9d8f;color:#2a9d8f;">D2</div>
+        <div class="day-header" style="border-color:#2a9d8f;">
+          <span style="font-size:1.5rem;">🦁</span>
+          <div>
+            <div class="day-number">7月17日 · 周五</div>
+            <div class="day-title">鱼尾狮 · 滨海湾花园 · 超级树灯光秀</div>
+          </div>
+          <div class="day-theme">🎯 今日重点：标志打卡 + 夜景</div>
+        </div>
+        
+
+      <div class="route-diagram">
+        <div class="route-diagram-title">🚌 D2 乘车路线</div>
+        <div id="route-d2"></div>
+      </div>
+      <script>drawRouteDiagram("route-d2", [{"name": "voco酒店", "time": "出发", "transport": "🚇 MRT"}, {"name": "鱼尾狮公园", "time": "上午", "transport": "🚶 步行10min"}, {"name": "老巴刹", "time": "午餐", "transport": "🚶 步行8min"}, {"name": "滨海湾花园", "time": "下午", "transport": "🚇 MRT"}, {"name": "克拉码头", "time": "晚餐", "transport": ""}], "#2a9d8f");</script>
+
+      <div class="spots-grid">
+          <div class="spot-card">
+            <div class="spot-icon">🦁</div>
+            <div>
+              <div class="spot-time">上午 9:00</div>
+              <div class="spot-name">鱼尾狮公园</div>
+              <div class="spot-desc">新加坡标志景点，免费参观。早上人较少，光线好适合拍照。Marina Bay Sands背景打卡最佳角度。</div>
+              <span class="spot-transport">🚇 MRT至City Hall站步行10分钟</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🍢</div>
+            <div>
+              <div class="spot-time">午餐 12:00</div>
+              <div class="spot-name">老巴刹 Lau Pa Sat</div>
+              <div class="spot-desc">百年熟食中心，沙爹+炒粿条必点！18:00后户外沙爹街更热闹，但午饭时段不用排队。人均SGD 8-15。</div>
+              <span class="meal-tag">🍽️ 沙爹 · 炒粿条</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🌿</div>
+            <div>
+              <div class="spot-time">下午 14:00</div>
+              <div class="spot-name">滨海湾花园 Gardens by the Bay</div>
+              <div class="spot-desc">超级树免费参观！室内温室云雾森林+花穹需购票（各约SGD 14/成人）。建议只逛免费区留体力。</div>
+              <span class="spot-transport">🚇 Bayfront站步行5分钟</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">💫</div>
+            <div>
+              <div class="spot-time">19:00-19:45</div>
+              <div class="spot-name">超级树灯光秀 Garden Rhapsody</div>
+              <div class="spot-desc">每晚19:45和20:45各一场，完全免费！提前15分钟找好位置，树下仰望视角最震撼。持续约10分钟。</div>
+              <span class="meal-tag">✨ 免费 · 必看推荐</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🌉</div>
+            <div>
+              <div class="spot-time">晚餐后</div>
+              <div class="spot-name">克拉码头 Clarke Quay</div>
+              <div class="spot-desc">夜景极美！沿河酒吧街散步，不喝酒也值得一逛。周边有多家餐厅，晚餐可选河畔用餐感受夜景。</div>
+              <span class="spot-transport">🚇 Clarke Quay站直达</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-block">
+        <div class="day-dot" style="border-color:#e63946;color:#e63946;">D3</div>
+        <div class="day-header" style="border-color:#e63946;">
+          <span style="font-size:1.5rem;">🎢</span>
+          <div>
+            <div class="day-number">7月18日 · 周六</div>
+            <div class="day-title">圣淘沙 · 滑车 · 海洋馆 · 海滩</div>
+          </div>
+          <div class="day-theme">🎯 今日重点：刺激体验 + 海滩休闲</div>
+        </div>
+        
+
+      <div class="route-diagram">
+        <div class="route-diagram-title">🚌 D3 乘车路线</div>
+        <div id="route-d3"></div>
+      </div>
+      <script>drawRouteDiagram("route-d3", [{"name": "voco酒店", "time": "出发", "transport": "🚇 MRT"}, {"name": "天际线滑车", "time": "上午", "transport": "🚶 5min"}, {"name": "美食街午餐", "time": "中午", "transport": "🚶 3min"}, {"name": "S.E.A.海洋馆", "time": "下午", "transport": "🚶 10min"}, {"name": "巴拉湾海滩", "time": "下午", "transport": "🚶 步行"}, {"name": "怡丰城晚餐", "time": "晚上", "transport": ""}], "#e63946");</script>
+
+      <div class="spots-grid">
+          <div class="spot-card">
+            <div class="spot-icon">🎿</div>
+            <div>
+              <div class="spot-time">9:30（需提前预约）</div>
+              <div class="spot-name">天际线斜坡滑车 Skyline Luge</div>
+              <div class="spot-desc">4圈套票约SGD 28，穿闭合鞋必须！孩子至少110cm才可单独驾驶，小于110cm需成人同乘。<strong>提前1天预约10:30时段！</strong></div>
+              <span class="meal-tag" style="background:#fff0f0;color:#c0392b;">⚠️ 必须提前网上预约</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🍛</div>
+            <div>
+              <div class="spot-time">午餐 12:30-14:00</div>
+              <div class="spot-name">马来西亚美食街</div>
+              <div class="spot-desc">圣淘沙内美食广场，椰浆饭+鱼圆面是当地特色。圣淘沙内餐厅偏贵，此处性价比较高，人均SGD 12-18。</div>
+              <span class="meal-tag">🍚 椰浆饭 · 鱼圆面</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🐠</div>
+            <div>
+              <div class="spot-time">下午 14:00</div>
+              <div class="spot-name">S.E.A. 海洋馆</div>
+              <div class="spot-desc">亚洲最大水族馆之一，超过100,000种海洋生物！门票约SGD 45/成人，孩子SGD 33。室内恒温，午后最舒适。</div>
+              <span class="spot-transport">📍 圣淘沙岛内步行可达</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🏖️</div>
+            <div>
+              <div class="spot-time">下午 16:00</div>
+              <div class="spot-name">巴拉湾海滩 Palawan Beach</div>
+              <div class="spot-desc">亚洲最南端的大陆点，白沙海滩免费！带孩子戏水玩沙最佳。记得带防晒和换洗衣物。</div>
+              <span class="meal-tag">🌊 免费海滩 · 记得带换洗衣物</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🍗</div>
+            <div>
+              <div class="spot-time">晚餐</div>
+              <div class="spot-name">怡丰城大食代</div>
+              <div class="spot-desc">海南鸡饭（新加坡国菜）+蚝煎必点！大食代是当地美食广场，种类丰富，人均SGD 10-15，亲子友好。</div>
+              <span class="meal-tag">🍽️ 海南鸡饭 · 蚝煎</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div class="day-block">
+        <div class="day-dot" style="border-color:#7b2d8b;color:#7b2d8b;">D4</div>
+        <div class="day-header" style="border-color:#7b2d8b;">
+          <span style="font-size:1.5rem;">🌲</span>
+          <div>
+            <div class="day-number">7月19日 · 周日</div>
+            <div class="day-title">麦里芝蓄水池徒步 · 树顶吊桥</div>
+          </div>
+          <div class="day-theme">🎯 今日重点：自然探索 + 休息日</div>
+        </div>
+        
+
+      <div class="route-diagram">
+        <div class="route-diagram-title">🚌 D4 乘车路线</div>
+        <div id="route-d4"></div>
+      </div>
+      <script>drawRouteDiagram("route-d4", [{"name": "voco酒店", "time": "出发", "transport": "🚗 Grab 25min"}, {"name": "麦里芝徒步", "time": "约2h短路线", "transport": "🚶 步行10min"}, {"name": "Upper Thomson午餐", "time": "中午", "transport": "🚗 Grab 20min"}, {"name": "酒店泳池", "time": "下午", "transport": "🚶 5min"}, {"name": "螃蟹晚餐", "time": "晚上", "transport": ""}], "#7b2d8b");</script>
+
+      <div class="spots-grid">
+          <div class="spot-card">
+            <div class="spot-icon">🌳</div>
+            <div>
+              <div class="spot-time">上午 9:00</div>
+              <div class="spot-name">麦里芝蓄水池 MacRitchie Reservoir</div>
+              <div class="spot-desc">热带雨林徒步，空气清新！树顶吊桥（HSBC TreeTop Walk）免费，长250m高25m，可能遇见野生猕猴，请勿喂食。<strong>带小朋友建议走短路线</strong>：从维纳斯车道入口进，到吊桥往返约1.5-2小时，比环湖线轻松很多。</div>
+              <span class="spot-transport" style="background:#fff0f0;color:#c0392b;">💡 建议走短路线1.5-2h，带足水（每人至少1L）</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🍜</div>
+            <div>
+              <div class="spot-time">午餐</div>
+              <div class="spot-name">Upper Thomson 福建虾面</div>
+              <div class="spot-desc">Upper Thomson Road是当地美食一条街，福建虾面是特色，炸水粿（菜头粿）是传统小吃，推荐早午餐档口。<strong>从麦里芝步行约10分钟即到</strong>，不需要打车。</div>
+              <span class="meal-tag">🦐 福建虾面 · 炸水粿</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🏊</div>
+            <div>
+              <div class="spot-time">下午 14:00</div>
+              <div class="spot-name">酒店游泳戏水休息</div>
+              <div class="spot-desc">voco酒店游泳池，孩子们的最爱！徒步后泡水放松最舒服。两个家庭的孩子可一起玩水，大人轮流看护。也可午睡补充体力，为后面几天蓄力。</div>
+              <span class="meal-tag" style="background:#e8f8f5;color:#2a9d8f;">😌 休闲放松 · 酒店设施</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🦀</div>
+            <div>
+              <div class="spot-time">晚餐</div>
+              <div class="spot-name">辣椒螃蟹（微辣/不辣）</div>
+              <div class="spot-desc">新加坡必吃！可选微辣或不辣。推荐Long Beach、No Signboard或Jumbo海鲜。配炸馒头蘸汁超绝。人均SGD 60-80。</div>
+              <span class="meal-tag">🦀 新加坡最佳体验餐 · 建议提前订座</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="day-block">
+        <div class="day-dot" style="border-color:#f4a261;color:#e76f51;">D5</div>
+        <div class="day-header" style="border-color:#f4a261;">
+          <span style="font-size:1.5rem;">🐼</span>
+          <div>
+            <div class="day-number">7月20日 · 周一</div>
+            <div class="day-title">新加坡动物园 · 河川生态园（看熊猫）</div>
+          </div>
+          <div class="day-theme">🎯 今日重点：动物园探索（全天）</div>
+        </div>
+        
+
+      <div class="route-diagram">
+        <div class="route-diagram-title">🚌 D5 乘车路线</div>
+        <div id="route-d5"></div>
+      </div>
+      <script>drawRouteDiagram("route-d5", [{"name": "voco酒店", "time": "出发", "transport": "🚇 MRT或🚗 Grab"}, {"name": "新加坡动物园", "time": "上午", "transport": "🚶 5min"}, {"name": "河川生态园", "time": "下午", "transport": "🚇 MRT或🚗 Grab"}, {"name": "回酒店", "time": "傍晚", "transport": ""}], "#f4a261");</script>
+
+      <div class="spots-grid">
+          <div class="spot-card">
+            <div class="spot-icon">🦁</div>
+            <div>
+              <div class="spot-time">上午 9:00 开园（需提前预约）</div>
+              <div class="spot-name">新加坡动物园 Singapore Zoo</div>
+              <div class="spot-desc">全球最佳开放式动物园！无栏杆设计，可近距离接触动物。亮点：红毛猩猩自由散步，早餐表演。门票约SGD 48/成人。<strong>提前一天预约！</strong></div>
+                            <span class="meal-tag" style="background:#fff0f0;color:#c0392b;">⚠️ 必须提前预约入园</span>
+                            <span class="spot-transport">🚇 坐MRT到Mandai站（TE线），出站有免费shuttle到动物园</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🍱</div>
+            <div>
+              <div class="spot-time">午餐 12:00</div>
+              <div class="spot-name">园区简餐 / 武吉知马食阁</div>
+              <div class="spot-desc">园内有餐厅，稍贵但方便。若体力允许可去武吉知马食阁吃卤鸭饭+菜头粿，性价比更高。</div>
+              <span class="meal-tag">🍚 卤鸭饭 · 菜头粿</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🐼</div>
+            <div>
+              <div class="spot-time">下午 14:00</div>
+              <div class="spot-name">河川生态园 River Wonders</div>
+              <div class="spot-desc">与动物园相邻！中国大熊猫"嘉嘉"和"乐乐"在此！全亚洲规模最大淡水动物园，亚马逊河奇航船游约20分钟。门票约SGD 42/成人。</div>
+              <span class="spot-transport">📍 与动物园相邻步行可达</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 6 -->
+      <div class="day-block">
+        <div class="day-dot" style="border-color:#e9c46a;color:#c8961a;">D6</div>
+        <div class="day-header" style="border-color:#e9c46a;">
+          <span style="font-size:1.5rem;">🌸</span>
+          <div>
+            <div class="day-number">7月21日 · 周二</div>
+            <div class="day-title">哈芝巷 · 苏丹回教堂 · 植物园 · 福康宁</div>
+          </div>
+          <div class="day-theme">🎯 今日重点：文化探索 + 网红打卡</div>
+        </div>
+        
+
+      <div class="route-diagram">
+        <div class="route-diagram-title">🚌 D6 乘车路线</div>
+        <div id="route-d6"></div>
+      </div>
+      <script>drawRouteDiagram("route-d6", [{"name": "voco酒店", "time": "出发", "transport": "🚇 MRT"}, {"name": "哈芝巷·回教堂", "time": "上午", "transport": "🚶 15min"}, {"name": "福康宁公园", "time": "下午", "transport": "🚇 MRT"}, {"name": "植物园", "time": "下午", "transport": "🚇 MRT 或🚶 步行至乌节路"}, {"name": "回乌节路", "time": "晚餐", "transport": ""}], "#e9c46a");</script>
+
+      <div class="spots-grid">
+          <div class="spot-card">
+            <div class="spot-icon">🕌</div>
+            <div>
+              <div class="spot-time">上午 9:30</div>
+              <div class="spot-name">哈芝巷 + 苏丹回教堂</div>
+              <div class="spot-desc">波希米亚艺术街区，彩色涂鸦墙超出片！苏丹回教堂金色圆顶是背景首选。上午光线最佳，避开下午热。</div>
+              <span class="spot-transport">🚇 Bugis站步行10分钟</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🍛</div>
+            <div>
+              <div class="spot-time">午餐</div>
+              <div class="spot-name">哈芝巷附近美食</div>
+              <div class="spot-desc">周边餐厅多，椰浆饭（Nasi Lemak）是马来餐国民美食，配上沙爹极美味。人均SGD 10-15。</div>
+              <span class="meal-tag">🥥 椰浆饭 · 沙爹</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🌳</div>
+            <div>
+              <div class="spot-time">下午 14:00</div>
+              <div class="spot-name">福康宁公园 Fort Canning Park</div>
+              <div class="spot-desc">网红树洞打卡地！古城堡遗址，青苔覆盖的拱门非常上镜。从哈芝巷步行约15分钟可达，路线顺畅不折返。</div>
+              <span class="meal-tag" style="background:#e8f8f5;color:#2a9d8f;">📸 网红树洞 · 免费</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🌺</div>
+            <div>
+              <div class="spot-time">下午 15:00-17:00</div>
+              <div class="spot-name">新加坡植物园 Singapore Botanic Gardens</div>
+              <div class="spot-desc">UNESCO世界遗产！热带花园，国家胡姬花园（兰花园）美不胜收。免费入园（胡姬花园需收费约SGD 8），傍晚光线绝佳，孩子可在草地奔跑。逛完可步行回乌节路酒店约15分钟。</div>
+              <span class="spot-transport">🚇 Botanic Gardens站直达 · 或步行回乌节路</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">🥣</div>
+            <div>
+              <div class="spot-time">晚餐</div>
+              <div class="spot-name">乌节路 · 田鸡粥 / 潮州鱼粥</div>
+              <div class="spot-desc">酒店附近乌节路觅食，田鸡粥是特色夜宵，滑嫩爽口。潮州鱼粥是清淡选择，孩子也爱。本地食阁人均SGD 8-12。</div>
+              <span class="meal-tag">🐸 田鸡粥 · 潮州鱼粥</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 7 -->
+      <div class="day-block">
+        <div class="day-dot" style="border-color:#6c757d;color:#6c757d;">D7</div>
+        <div class="day-header" style="border-color:#6c757d;">
+          <span style="font-size:1.5rem;">🏠</span>
+          <div>
+            <div class="day-number">7月22日 · 周三</div>
+            <div class="day-title">回程北京</div>
+          </div>
+          <div class="day-theme">✈️ CA976 9:00起飞</div>
+        </div>
+        
+
+      <div class="route-diagram">
+        <div class="route-diagram-title">🚌 D7 乘车路线</div>
+        <div id="route-d7"></div>
+      </div>
+      <script>drawRouteDiagram("route-d7", [{"name": "voco退房", "time": "7:00", "transport": "🚗 Grab 6座"}, {"name": "樟宜T1", "time": "提前2.5h", "transport": "✈️ CA976"}, {"name": "北京首都T3", "time": "15:15到达", "transport": ""}], "#6c757d");</script>
+
+      <div class="spots-grid">
+          <div class="spot-card">
+            <div class="spot-icon">⏰</div>
+            <div>
+              <div class="spot-time">7:00</div>
+              <div class="spot-name">酒店出发前往机场</div>
+              <div class="spot-desc">乌节路→樟宜机场约30-40分钟。6人需打 <strong>Grab 6-seater（SGD 35-45）</strong>。T1出发，提前2.5-3小时到机场以确保充足时间。</div>
+              <span class="spot-transport">🚗 Grab打车推荐</span>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-icon">✈️</div>
+            <div>
+              <div class="spot-time">09:00 起飞</div>
+              <div class="spot-name">国航CA976 · 樟宜T1→首都T3</div>
+              <div class="spot-desc">飞行约6小时15分，北京时间15:15到达首都机场T3。记得提前做好行李托运，液体类新加坡购物品需托运。</div>
+              <span class="meal-tag" style="background:#e8f8f5;color:#2a9d8f;">🏠 平安归家</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MAP -->
+  <section id="map" class="fade-in">
+    <h2 class="section-title">🗺️ 景点地图</h2>
+    <div class="map-container">
+
+      <style>
+        #sg-map-leaflet { width:100%; height:520px; border-radius:12px; z-index:1; }
+        .leaflet-div-icon { background:transparent !important; border:none !important; }
+        .leaflet-popup-content-wrapper { border-radius:10px; font-family:'PingFang SC','Microsoft YaHei',sans-serif; }
+        .leaflet-popup-content { margin:10px 14px; font-size:13px; line-height:1.5; }
+        .leaflet-popup-content strong { font-size:14px; }
+        .legend-panel {
+          background: rgba(255,255,255,0.95);
+          border-radius:10px;
+          padding: 10px 14px;
+          box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+          font-size: 0.78rem;
+          line-height: 1.6;
+        }
+        .legend-panel i { width:12px; height:12px; border-radius:50%; display:inline-block; margin-right:6px; vertical-align:middle; }
+      </style>
+
+      <div style="position:relative;">
+        <div id="sg-map-leaflet"></div>
+      </div>
+
+      <p style="font-size:0.84rem;color:#888;margin-top:10px;">💡 点击地图上的彩色标记查看景点详情。缩放/拖拽可浏览全岛。</p>
+
+      <!-- 按天筛选按钮 -->
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;">
+        <button class="map-filter-btn active" data-day="all" style="border-color:#0077b6;background:#0077b6;color:white;">📍 全部</button>
+        <button class="map-filter-btn" data-day="d1" style="border-color:#0077b6;color:#0077b6;">D1 抵达</button>
+        <button class="map-filter-btn" data-day="d2" style="border-color:#2a9d8f;color:#2a9d8f;">D2 市中心</button>
+        <button class="map-filter-btn" data-day="d3" style="border-color:#e63946;color:#e63946;">D3 圣淘沙</button>
+        <button class="map-filter-btn" data-day="d4" style="border-color:#7b2d8b;color:#7b2d8b;">D4 麦里芝</button>
+        <button class="map-filter-btn" data-day="d5" style="border-color:#f4a261;color:#f4a261;">D5 动物园</button>
+        <button class="map-filter-btn" data-day="d6" style="border-color:#e9c46a;color:#c8961a;">D6 文化区</button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Global Map JS -->
+  <script>
+  (function(){
+    var map = L.map('sg-map-leaflet').setView([1.315, 103.84], 12);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap | 新加坡旅游攻略',
+      maxZoom: 18
+    }).addTo(map);
+
+    // 自定义 icon 工厂
+    function makeIcon(colorHex, label) {
+      return L.divIcon({
+        html: '<div style="position:relative;width:36px;height:42px;">'
+          + '<svg xmlns="http://www.w3.org/2000/svg" width="36" height="46" viewBox="0 0 36 46"><path d="M18 2C8 2 0 10.5 0 20c0 14 18 26 18 26s18-12 18-26C36 10.5 28 2 18 2z" fill="'+colorHex+'"/></svg>'
+          + '<span style="position:absolute;top:8px;left:50%;transform:translateX(-50%);color:white;font-weight:800;font-size:12px;pointer-events:none;">'+label+'</span>'
+          + '</div>',
+        iconSize: [36, 46],
+        iconAnchor: [18, 44],
+        popupAnchor: [0, -44]
+      });
+    }
+
+    // 酒店专用图标：圆角矩形徽章，区别于景点水滴形
+    function makeHotelIcon() {
+      return L.divIcon({
+        html: '<div style="position:relative;width:44px;height:44px;">'
+          + '<svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 44 44">'
+          + '<rect x="2" y="2" width="40" height="40" rx="10" fill="#f4a261"/>'
+          + '<text x="22" y="28" text-anchor="middle" font-size="20" fill="white">🏨</text>'
+          + '</svg>'
+          + '</div>',
+        iconSize: [44, 44],
+        iconAnchor: [22, 40],
+        popupAnchor: [0, -40]
+      });
+    }
+
+    // 所有景点数据
+    var spots = [
+      // D1 抵达区 #0077b6
+      { d:'d1', lat:1.3592, lng:103.9897, name:'星耀樟宜 Jewel', desc:'D1 · 室内瀑布、SKYtrain、森林谷步道，约3小时逛完', color:'#0077b6', label:'D1' },
+      { d:'d1', lat:1.3644, lng:103.9915, name:'樟宜机场 T1', desc:'D1 · 国航CA889到达口，T1航站楼', color:'#0077b6', label:'D1' },
+
+      // D2 市中心 #2a9d8f
+      { d:'d2', lat:1.2868, lng:103.8545, name:'🦁 鱼尾狮公园', desc:'D2 · 新加坡标志，免费参观，早上拍照光线最佳', color:'#2a9d8f', label:'D2' },
+      { d:'d2', lat:1.2806, lng:103.8504, name:'老巴刹 Lau Pa Sat', desc:'D2 午餐 · 百年熟食中心，沙爹+炒粿条必点', color:'#2a9d8f', label:'D2' },
+      { d:'d2', lat:1.2816, lng:103.8636, name:'🌿 滨海湾花园', desc:'D2 · 超级树灯光秀19:45/20:45两场，免费！', color:'#2a9d8f', label:'D2' },
+      { d:'d2', lat:1.2906, lng:103.8464, name:'🌉 克拉码头', desc:'D2 晚餐 · 夜景绝美，沿河散步', color:'#2a9d8f', label:'D2' },
+
+      // D3 圣淘沙 #e63946
+      { d:'d3', lat:1.2530, lng:103.8185, name:'🎢 天际线斜坡滑车', desc:'D3 上午 · 4圈套票，提前1天预约，穿运动鞋！', color:'#e63946', label:'D3' },
+      { d:'d3', lat:1.2585, lng:103.8203, name:'🐠 S.E.A. 海洋馆', desc:'D3 下午 · 亚洲最大水族馆之一', color:'#e63946', label:'D3' },
+      { d:'d3', lat:1.2494, lng:103.8240, name:'🏖️ 巴拉湾海滩', desc:'D3 下午 · 亚洲大陆最南端，免费白沙滩', color:'#e63946', label:'D3' },
+      { d:'d3', lat:1.2643, lng:103.8222, name:'怡丰城 VivoCity', desc:'D3 晚餐 · 大食代海南鸡饭+蚝煎', color:'#e63946', label:'D3' },
+
+      // D4 中部自然区 #7b2d8b
+      { d:'d4', lat:1.3455, lng:103.8280, name:'🌳 麦里芝蓄水池', desc:'D4 上午 · 热带雨林徒步，树顶吊桥免费', color:'#7b2d8b', label:'D4' },
+      { d:'d4', lat:1.3544, lng:103.8330, name:'Upper Thomson 美食街', desc:'D4 午餐 · 福建虾面+炸水粿', color:'#7b2d8b', label:'D4' },
+
+      // D5 北部园区 #f4a261
+      { d:'d5', lat:1.4043, lng:103.7930, name:'🦁 新加坡动物园', desc:'D5 上午 · 需提前预约！全球最佳开放式动物园', color:'#f4a261', label:'D5' },
+      { d:'d5', lat:1.4035, lng:103.7915, name:'🐼 河川生态园', desc:'D5 下午 · 看大熊猫"嘉嘉""乐乐"', color:'#f4a261', label:'D5' },
+
+      // D6 文化区 #e9c46a
+      { d:'d6', lat:1.3015, lng:103.8592, name:'🎨 哈芝巷', desc:'D6 上午 · 波希米亚艺术街区，彩色涂鸦打卡', color:'#e9c46a', label:'D6' },
+      { d:'d6', lat:1.3022, lng:103.8599, name:'🕌 苏丹回教堂', desc:'D6 上午 · 金色圆顶，哈芝巷隔壁', color:'#e9c46a', label:'D6' },
+      { d:'d6', lat:1.3138, lng:103.8159, name:'🌺 新加坡植物园', desc:'D6 下午 · UNESCO世界遗产，胡姬花园', color:'#e9c46a', label:'D6' },
+      { d:'d6', lat:1.2967, lng:103.8468, name:'📸 福康宁公园', desc:'D6 下午 · 网红树洞打卡地', color:'#e9c46a', label:'D6' },
+
+      // 其他重要地点
+      { d:'hotel', lat:1.3049, lng:103.8318, name:'🏨 voco乌节路酒店', desc:'全程住宿 · 乌节路中心，近Orchard MRT', color:'#f4a261', label:'🏨' },
+      { d:'bonus', lat:1.3483, lng:103.6831, name:'🎓 南洋理工大学 NTU', desc:'备选 · 特色环形建筑，免费参观', color:'#6c757d', label:'备' },
+      { d:'bonus', lat:1.2966, lng:103.7764, name:'🎓 新加坡国立大学 NUS', desc:'备选 · 亚洲顶尖大学，肯特岗校区', color:'#6c757d', label:'备' }
+    ];
+
+    var markers = {}; // day -> [marker]
+
+    spots.forEach(function(s) {
+      var icon = s.d === 'hotel' ? makeHotelIcon() : makeIcon(s.color, s.label);
+      var marker = L.marker([s.lat, s.lng], { icon: icon })
+        .bindPopup('<strong>'+s.name+'</strong><br>'+s.desc)
+        .addTo(map);
+      if (!markers[s.d]) markers[s.d] = [];
+      markers[s.d].push(marker);
+    });
+
+    // 筛选按钮
+    document.querySelectorAll('.map-filter-btn').forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        var borderColor = btn.style.borderColor;
+        document.querySelectorAll('.map-filter-btn').forEach(function(b) {
+          b.classList.remove('active');
+          b.style.background = 'white';
+          b.style.color = b.style.borderColor;
+        });
+        btn.classList.add('active');
+        btn.style.background = borderColor;
+        btn.style.color = 'white';
+
+        var day = btn.getAttribute('data-day');
+
+        // 显示/隐藏markers
+        Object.keys(markers).forEach(function(d) {
+          markers[d].forEach(function(m) {
+            if (day === 'all') {
+              m.addTo(map);
+            } else {
+              map.removeLayer(m);
+              if (d === day) m.addTo(map);
+            }
+          });
+        });
+
+        // 自动缩放
+        if (day !== 'all') {
+          var group = new L.featureGroup(markers[day]);
+          if (group.getBounds().isValid()) {
+            map.fitBounds(group.getBounds().pad(0.2));
+          }
+        } else {
+          map.setView([1.315, 103.84], 12);
+        }
+      });
+    });
+  })();
+  </script>
+
+  <!-- TRANSPORT -->
+  <section id="transport" class="fade-in">
+    <h2 class="section-title">🚌 交通指南</h2>
+    <div class="transport-grid">
+      <div class="transport-card" style="border-top:4px solid #0077b6;">
+        <div class="t-icon">🚇</div>
+        <h3>地铁 MRT</h3>
+        <p>覆盖全岛主要景点，最经济实惠。买张易通卡（EZ-Link）可用于地铁+巴士，在机场/7-Eleven购买。单程SGD 0.8-2.6。</p>
+        <span class="t-cost">💳 推荐EZ-Link卡</span>
+      </div>
+      <div class="transport-card" style="border-top:4px solid #2a9d8f;">
+        <div class="t-icon">🚌</div>
+        <h3>公共巴士</h3>
+        <p>覆盖更广，可到地铁未覆盖区域（如麦里芝）。Google Maps可查询路线，实时准点。同用EZ-Link卡。</p>
+        <span class="t-cost">💰 SGD 1-2.5/程</span>
+      </div>
+      <div class="transport-card" style="border-top:4px solid #e63946;">
+        <div class="t-icon">🚗</div>
+        <h3>Grab打车（6人推荐）</h3>
+        <p>新加坡版滴滴，安全便捷！下载Grab App绑定信用卡。<strong>6人推荐选Grab 6-seater</strong>（一车全坐），偏远景点或深夜必备。</p>
+        <span class="t-cost">💵 普通SGD 8-25 / 6座SGD 15-45</span>
+      </div>
+      <div class="transport-card" style="border-top:4px solid #7b2d8b;">
+        <div class="t-icon">🚡</div>
+        <h3>圣淘沙专线</h3>
+        <p>圣淘沙快线有缆车（SGD 35起）、地铁VivoCity转乘圣淘沙快线，或免费步行通道。推荐地铁转乘最省钱。</p>
+        <span class="t-cost">🎫 免费步行 or 地铁转乘</span>
+      </div>
+      <div class="transport-card" style="border-top:4px solid #f4a261;">
+        <div class="t-icon">🚡</div>
+        <h3>机场至市区（6人）</h3>
+        <p>MRT East West Line 樟宜→市区约40分钟 SGD 2.1/人。6人可乘机场大巴 SGD 10/人。<strong>推荐打1辆Grab 6-seater SGD 35-45</strong>最省心。</p>
+        <span class="t-cost">🚇 MRT最省钱 / 🚗 6座最省心</span>
+      </div>
+      <div class="transport-card" style="border-top:4px solid #e9c46a;">
+        <div class="t-icon">📱</div>
+        <h3>导航 App</h3>
+        <p>Google Maps在新加坡非常准确，公交+地铁路线都有。也可用Citymapper专门查新加坡公共交通。</p>
+        <span class="t-cost">📲 Google Maps首选</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- PITFALLS -->
+  <section id="pitfalls" class="fade-in">
+    <h2 class="section-title">⚠️ 避坑指南</h2>
+    <div class="pitfall-grid">
+      <div class="pitfall-card">
+        <div class="pitfall-icon">🎢</div>
+        <h3>滑车不预约，白跑一趟</h3>
+        <p>天际线斜坡滑车非常火爆，特别是周末。现场排队可能等2-3小时或当日售罄。</p>
+        <div class="pitfall-tip">✅ 提前1天在官网预约10:30时段，穿闭合鞋（运动鞋）！</div>
+      </div>
+      <div class="pitfall-card">
+        <div class="pitfall-icon">🐼</div>
+        <h3>动物园不预约，进不去</h3>
+        <p>新加坡动物园实行分时段限流预约制，现场购票可能没有当日余票，尤其是暑假旺季。</p>
+        <div class="pitfall-tip">✅ 提前1-2天在官网/Trip.com预约，选9:00开园首场最凉快！</div>
+      </div>
+      <div class="pitfall-card">
+        <div class="pitfall-icon">💳</div>
+        <h3>信用卡境外设置未开通</h3>
+        <p>很多银行默认关闭境外交易，到新加坡刷卡被拒非常尴尬。需提前开通境外支付功能。</p>
+        <div class="pitfall-tip">✅ 出发前开通Visa/Master境外支付，关闭境外交易凭密（手机支付更方便）</div>
+      </div>
+      <div class="pitfall-card">
+        <div class="pitfall-icon">🔌</div>
+        <h3>插头不对用不了电</h3>
+        <p>新加坡使用英式三孔插头（G型），与中国两孔/三孔完全不同，无法直接使用。</p>
+        <div class="pitfall-tip">✅ 提前购买转换插头（某宝约5-15元），不要指望酒店有借用</div>
+      </div>
+      <div class="pitfall-card">
+        <div class="pitfall-icon">🦟</div>
+        <h3>热带蚊子不容小觑</h3>
+        <p>新加坡是热带国家，蚊子多且有传播登革热风险，麦里芝/动物园尤其注意。</p>
+        <div class="pitfall-tip">✅ 带好驱蚊液（避蚊胺成分为佳），户外活动穿长袖长裤或涂抹驱蚊</div>
+      </div>
+      <div class="pitfall-card">
+        <div class="pitfall-icon">🌧️</div>
+        <h3>7月午后必有阵雨</h3>
+        <p>新加坡热带雨林气候，7月几乎每天下午都有短暂阵雨，通常15-30分钟即停。</p>
+        <div class="pitfall-tip">✅ 每人备一把轻便折叠伞或雨衣，上午安排户外，下午安排室内景点</div>
+      </div>
+      <div class="pitfall-card">
+        <div class="pitfall-icon">🦀</div>
+        <h3>辣椒螃蟹不订座白等</h3>
+        <p>Jumbo/Long Beach等名店晚市非常抢手，直接来可能排队1-2小时甚至扑空。</p>
+        <div class="pitfall-tip">✅ 提前1-2天致电或网上订位，告知几位用餐，可备注微辣/不辣</div>
+      </div>
+      <div class="pitfall-card">
+        <div class="pitfall-icon">💰</div>
+        <h3>圣淘沙内消费超高</h3>
+        <p>圣淘沙是旅游区，餐厅、零食全部溢价30-50%。景区内饮用水也贵。</p>
+        <div class="pitfall-tip">✅ 自带矿泉水和零食入园，午饭选美食广场（大食代）性价比最高</div>
+      </div>
+      <div class="pitfall-card">
+        <div class="pitfall-icon">📶</div>
+        <h3>没有网络寸步难行</h3>
+        <p>Grab打车、Google导航、预约系统全靠手机网络，没网络在新加坡非常不便。</p>
+        <div class="pitfall-tip">✅ 机场租随身wifi（当场租即可）或购买本地SIM（Singtel/StarHub约SGD 15/5天）</div>
+      </div>
+      <div class="pitfall-card">
+        <div class="pitfall-icon">🍬</div>
+        <h3>口香糖禁止携带入境</h3>
+        <p>新加坡明令禁止进口非医用口香糖，入关时行李中有口香糖可能被没收或罚款。</p>
+        <div class="pitfall-tip">✅ 出发前丢掉口香糖，带糖果替代。同样不要乱扔垃圾，罚款很重！</div>
+      </div>
+      <div class="pitfall-card">
+        <div class="pitfall-icon">👟</div>
+        <h3>滑车穿凉鞋不让玩</h3>
+        <p>天际线滑车严格要求穿闭合式运动鞋（必须包住脚趾），穿凉鞋/拖鞋直接拒绝入场。</p>
+        <div class="pitfall-tip">✅ 当天出门务必穿运动鞋，全家都要！拖鞋/凉鞋改带备用就好</div>
+      </div>
+      <div class="pitfall-card">
+        <div class="pitfall-icon">🌞</div>
+        <h3>防晒不足晒伤皮肤</h3>
+        <p>新加坡紫外线极强，近赤道地区UV指数常年11+（极危险），1小时即可晒伤。</p>
+        <div class="pitfall-tip">✅ SPF50+防晒霜每2小时补涂，帽子+墨镜必备，孩子尤其注意</div>
+      </div>
+      <div class="pitfall-card" style="border-top:4px solid #f4a261;">
+        <div class="pitfall-icon">👨‍👩‍👧‍👦</div>
+        <h3>6人打1辆普通Grab装不下</h3>
+        <p>新加坡普通Grab最多坐4人，6人+行李需要Grab 6-seater或打2辆车。高峰期6-seater不好叫。</p>
+        <div class="pitfall-tip">✅ 提前下载Grab App，熟悉6-seater选项。机场/动物园等远途提前10-15分钟叫车</div>
+      </div>
+      <div class="pitfall-card" style="border-top:4px solid #f4a261;">
+        <div class="pitfall-icon">🍽️</div>
+        <h3>6人餐厅不订座可能坐不下</h3>
+        <p>新加坡热门餐厅桌位偏小，6人walk-in可能需要等很久或被迫分开坐。</p>
+        <div class="pitfall-tip">✅ 辣椒螃蟹、老巴刹等提前1天致电订6人位。食阁不用订位但建议错峰用餐</div>
+      </div>
+      <div class="pitfall-card" style="border-top:4px solid #f4a261;">
+        <div class="pitfall-icon">🏨</div>
+        <h3>2间房不一定相邻</h3>
+        <p>酒店通常不保证2间相邻房，可能被安排在不同楼层，带孩子不方便。</p>
+        <div class="pitfall-tip">✅ 预订时电话告知"2间相邻房带孩子"，入住前72小时再确认一次</div>
+      </div>
+      <div class="pitfall-card" style="border-top:4px solid #f4a261;">
+        <div class="pitfall-icon">👶</div>
+        <h3>两个孩子的体力节奏不同</h3>
+        <p>不同孩子午睡时间、走路耐力可能不同，强行统一节奏容易让大家都累。</p>
+        <div class="pitfall-tip">✅ 每天出发前约定"分头行动时段"和"集合时间地点"，微信群保持沟通</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHECKLIST -->
+  <section id="checklist" class="fade-in">
+    <h2 class="section-title">✅ 出行必备清单</h2>
+    <p style="font-size:0.88rem;color:#888;margin-bottom:16px;">点击打勾，出发前逐项确认 👇</p>
+    <div class="checklist-grid" id="checklist-grid">
+
+      <div class="check-item urgent" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">🛂 护照（有效期>6个月）</div>
+      </div>
+      <div class="check-item urgent" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">💳 Visa/Master信用卡（开通境外支付）</div>
+      </div>
+      <div class="check-item urgent" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">🔌 电源转换头（英式G型，提前买）</div>
+      </div>
+        <div class="check-item urgent" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">💵 随身新币现金 800-1000 SGD（6人份，多换小额）</div>
+      </div>
+      <div class="check-item urgent" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">📸 滑车预约截图（提前1天预约）</div>
+      </div>
+      <div class="check-item urgent" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">🐼 动物园预约截图（提前1-2天）</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">☀️ SPF50+防晒霜（大瓶）</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">🧢 帽子（遮阳帽或棒球帽）</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">🦟 驱蚊液（含避蚊胺成分）</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">😎 墨镜（防UV）</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">👟 舒适运动鞋（滑车必须包脚）</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">🩴 凉鞋或拖鞋（沙滩用）</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">🧥 薄外套（室内空调很冷）</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">💊 常用药品、创可贴</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">☂️ 折叠雨伞（防午后阵雨）</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">📱 下载Grab App（出发前）</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">🌐 随身WiFi / 当地SIM卡</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">🏊 泳衣（酒店游泳池用）</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">📷 相机/手机充足存储空间</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">🔋 充电宝（飞机可带20000mAh）</div>
+      </div>
+      <div class="check-item urgent" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">🏨 与酒店确认2间相邻房</div>
+      </div>
+      <div class="check-item urgent" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">📱 建微信群 · 共享实时位置</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">👨‍👩‍👧‍👦 确认孩子滑车身高要求（>110cm可单独驾驶）</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">💳 <strong>每家庭至少1张</strong>开通境外支付的信用卡</div>
+      </div>
+      <div class="check-item" onclick="toggleCheck(this)">
+        <div class="check-box">✓</div>
+        <div class="check-label">🦀 辣椒螃蟹提前订6人桌</div>
+      </div>
+    </div>
+    <div style="margin-top:16px;background:#fff5f5;border-radius:10px;padding:12px 16px;font-size:0.85rem;color:#c0392b;line-height:1.6;">
+      🔴 <strong>红色标注</strong>为重点必办事项，出发前务必完成！<br>
+      👨‍👩‍👧‍👦 <strong>6人团体特别提醒：</strong>每家庭需各自准备上述个人物品（防晒、泳衣等），共享物品（药品、转换头）只需带1份。行程中灵活协调，不必时时刻刻绑在一起。
+    </div>
+    </div>
+  </section>
+
+  <!-- BUDGET -->
+  <section id="budget" class="fade-in">
+    <div style="max-width:calc(5 * 200px + 4 * 12px);margin:0 auto;">
+    <h2 class="section-title">💰 费用参考（4大人 + 2孩子，6人合计）</h2>
+    <div class="budget-card" style="max-width:none;">
+      <table class="budget-table">
+        <thead>
+          <tr>
+            <th style="width:28%">费用类别</th>
+            <th style="width:44%">说明</th>
+            <th style="width:28%">预估金额（SGD）</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>🎢 天际线滑车</td>
+            <td>4圈套票 × 6人</td>
+            <td>~SGD 168</td>
+          </tr>
+          <tr>
+            <td>🐠 S.E.A.海洋馆</td>
+            <td>4成人SGD 180 + 2儿童SGD 66</td>
+            <td>~SGD 246</td>
+          </tr>
+          <tr>
+            <td>🦁 动物园入场</td>
+            <td>4成人SGD 192 + 2儿童SGD 72</td>
+            <td>~SGD 264</td>
+          </tr>
+          <tr>
+            <td>🐼 河川生态园</td>
+            <td>4成人SGD 168 + 2儿童SGD 62</td>
+            <td>~SGD 230</td>
+          </tr>
+          <tr>
+            <td>🌺 植物园胡姬花园</td>
+            <td>4成人SGD 32 + 2儿童免费</td>
+            <td>~SGD 32</td>
+          </tr>
+          <tr>
+            <td>🚇 交通（地铁+Grab）</td>
+            <td>EZ-Link × 6人 + 多程Grab 6-seater</td>
+            <td>~SGD 250</td>
+          </tr>
+          <tr>
+            <td>🍽️ 餐饮（6天）</td>
+            <td>早+午+晚，食阁为主偶尔餐厅</td>
+            <td>~SGD 540</td>
+          </tr>
+          <tr>
+            <td>🦀 辣椒螃蟹晚餐</td>
+            <td>Jumbo/Long Beach，6人桌</td>
+            <td>~SGD 350</td>
+          </tr>
+          <tr>
+            <td>🌐 WiFi / SIM</td>
+            <td>租2个随身WiFi或买SIM卡</td>
+            <td>~SGD 30-60</td>
+          </tr>
+          <tr>
+            <td>🛍️ 购物纪念品</td>
+            <td>机场免税 + 乌节路</td>
+            <td>~SGD 200-400</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr class="budget-total">
+            <td>💰 合计（不含机票酒店）</td>
+            <td>约合人民币 <strong style="font-size:1.1rem;">12,000-17,000元</strong></td>
+            <td>~SGD 2,300-3,200</td>
+          </tr>
+        </tfoot>
+      </table>
+      <div style="margin-top:16px;background:#f0f7ff;border-radius:10px;padding:12px 16px;font-size:0.84rem;color:#0077b6;line-height:1.6;">
+        💡 汇率参考：1 SGD ≈ 5.3 CNY（以出发前实时汇率为准）。园区内餐饮偏贵，尽量在园外食阁用餐可节省不少。<br>
+        <strong>👨‍👩‍👧‍👦 团体出行省钱建议：</strong>景点门票在 Trip.com / Klook 提前购买通常有团体折扣；餐厅6人可点大份分享，人均更便宜；EZ-Link卡每人1张，孩子可买儿童卡（半价）。
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- BONUS SPOTS -->
+  <section class="fade-in">
+    <div style="max-width:calc(5 * 200px + 4 * 12px);margin:0 auto;">
+    <h2 class="section-title">✨ 遗漏但值得一去的地方</h2>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px;">
+      <div style="background:white;border-radius:12px;padding:20px;box-shadow:var(--shadow);border-top:3px solid #7b2d8b;">
+        <div style="font-size:2rem;margin-bottom:8px;">🏫</div>
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:8px;color:#1a1a2e;">南洋理工大学 NTU</h3>
+        <p style="font-size:0.82rem;color:#666;line-height:1.5;">全球顶尖大学，校园建筑特色鲜明（如艺术设计与媒体学院环形建筑）。可自由参观，免费。适合对建筑/教育感兴趣者。</p>
+        <span style="display:inline-block;margin-top:8px;background:#f5e8ff;color:#7b2d8b;border-radius:6px;padding:2px 10px;font-size:0.78rem;">🚌 需打Grab前往</span>
+      </div>
+      <div style="background:white;border-radius:12px;padding:20px;box-shadow:var(--shadow);border-top:3px solid #e63946;">
+        <div style="font-size:2rem;margin-bottom:8px;">🎓</div>
+        <h3 style="font-size:0.95rem;font-weight:700;margin-bottom:8px;color:#1a1a2e;">新加坡国立大学 NUS</h3>
+        <p style="font-size:0.82rem;color:#666;line-height:1.5;">亚洲顶尖大学，肯特岗校区依山而建，绿树成荫。校园内有博物馆，免费开放，近李光耀公共政策学院。</p>
+        <span style="display:inline-block;margin-top:8px;background:#fff0f0;color:#e63946;border-radius:6px;padding:2px 10px;font-size:0.78rem;">🚇 Kent Ridge MRT</span>
+      </div>
+    </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>🦁 新加坡暑假旅游攻略 · 2026年7月16日-22日 · 北京出发</p>
+  <p style="margin-top:6px;font-size:0.8rem;opacity:0.7;">祝旅途愉快，平安归来！✈️ 🌟</p>
+</div>
+
+<script>
+  // Toggle checklist
+  function toggleCheck(el) {
+    el.classList.toggle('checked');
+    const box = el.querySelector('.check-box');
+    if (el.classList.contains('checked')) {
+      box.textContent = '✓';
+    } else {
+      box.textContent = '';
+    }
+  }
+
+  // Nav scroll
+  function scrollTo(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+    document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  // Nav active on scroll
+  window.addEventListener('scroll', () => {
+    const sections = ['overview','flight','itinerary','map','transport','pitfalls','checklist','budget'];
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 100) current = id;
+    });
+    const btns = document.querySelectorAll('.nav-btn');
+    btns.forEach((btn, i) => {
+      btn.classList.toggle('active', sections[i] === current);
+    });
+  });
+
+  // Initialize checklist checkboxes
+  document.querySelectorAll('.check-box').forEach(box => {
+    box.textContent = '';
+  });
+</script>
+</body>
+</html>
