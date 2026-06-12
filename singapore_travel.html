@@ -534,14 +534,14 @@ function drawRouteDiagram(cid, stops, color) {
 <!-- NAV -->
 <nav class="nav">
   <div class="nav-inner">
-    <button class="nav-btn active" onclick="scrollTo('overview')">📋 概览</button>
-    <button class="nav-btn" onclick="scrollTo('flight')">✈️ 机票&住宿</button>
-    <button class="nav-btn" onclick="scrollTo('itinerary')">🗓️ 每日行程</button>
-    <button class="nav-btn" onclick="scrollTo('map')">🗺️ 地图</button>
-    <button class="nav-btn" onclick="scrollTo('transport')">🚌 交通指南</button>
-    <button class="nav-btn" onclick="scrollTo('pitfalls')">⚠️ 避坑指南</button>
-    <button class="nav-btn" onclick="scrollTo('checklist')">✅ 必备清单</button>
-    <button class="nav-btn" onclick="scrollTo('budget')">💰 费用参考</button>
+    <button class="nav-btn active" onclick="scrollTo('overview', event)">📋 概览</button>
+    <button class="nav-btn" onclick="scrollTo('flight', event)">✈️ 机票&住宿</button>
+    <button class="nav-btn" onclick="scrollTo('itinerary', event)">🗓️ 每日行程</button>
+    <button class="nav-btn" onclick="scrollTo('map', event)">🗺️ 地图</button>
+    <button class="nav-btn" onclick="scrollTo('transport', event)">🚌 交通指南</button>
+    <button class="nav-btn" onclick="scrollTo('pitfalls', event)">⚠️ 避坑指南</button>
+    <button class="nav-btn" onclick="scrollTo('checklist', event)">✅ 必备清单</button>
+    <button class="nav-btn" onclick="scrollTo('budget', event)">💰 费用参考</button>
   </div>
 </nav>
 
@@ -1630,13 +1630,13 @@ function drawRouteDiagram(cid, stops, color) {
   }
 
   // Nav scroll
-  function scrollTo(id) {
+  function scrollTo(id, e) {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
     document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    if (e && e.target) e.target.classList.add('active');
   }
 
   // Scroll animations
