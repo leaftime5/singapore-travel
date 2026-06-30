@@ -492,27 +492,86 @@
   .budget-card {
     background: white;
     border-radius: var(--border-r);
-    padding: 28px;
+    padding: 20px;
     box-shadow: var(--shadow);
   }
-  .budget-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
-  .budget-table th {
+  .budget-table,
+  .budget-table thead,
+  .budget-table tbody,
+  .budget-table tfoot,
+  .budget-table tr,
+  .budget-table td { display: block; }
+  .budget-table { width: 100%; border-collapse: separate; border-spacing: 0; }
+  .budget-table thead { display: none; }
+  .budget-table tbody {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
+  }
+  .budget-table tfoot {
+    margin-top: 12px;
+  }
+  .budget-table tr {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    grid-template-areas:
+      "category amount"
+      "desc desc";
+    gap: 4px 10px;
+    align-items: start;
+    background: #fff;
+    border: 1px solid #edf1f7;
+    border-radius: 12px;
+    padding: 11px 13px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.04);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .budget-table tr:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  }
+  .budget-table td {
+    padding: 0;
+    border: 0;
+    overflow-wrap: anywhere;
+  }
+  .budget-table td:nth-child(1) {
+    grid-area: category;
+    color: var(--dark);
+    font-size: 0.88rem;
+    font-weight: 700;
+    line-height: 1.35;
+  }
+  .budget-table td:nth-child(2) {
+    grid-area: desc;
+    color: #65717d;
+    font-size: 0.78rem;
+    line-height: 1.45;
+  }
+  .budget-table td:nth-child(3) {
+    grid-area: amount;
+    justify-self: end;
+    align-self: start;
+    background: #f0f7ff;
+    color: var(--blue);
+    border-radius: 999px;
+    padding: 3px 9px;
+    font-size: 0.78rem;
+    font-weight: 800;
+    line-height: 1.45;
+    white-space: nowrap;
+  }
+  .budget-total {
+    background: linear-gradient(135deg, #f0f7ff, #e8f8f5) !important;
+    border-color: rgba(0,119,182,0.28) !important;
+    padding: 14px 16px !important;
+  }
+  .budget-total td:nth-child(1) { font-size: 0.95rem; }
+  .budget-total td:nth-child(2) { color: #415466; font-weight: 600; }
+  .budget-total td:nth-child(3) {
     background: var(--blue);
     color: white;
-    padding: 10px 16px;
-    text-align: left;
-    font-size: 0.9rem;
-  }
-  .budget-table th:first-child { border-radius: 8px 0 0 0; }
-  .budget-table th:last-child { border-radius: 0 8px 0 0; text-align: right; }
-  .budget-table td { padding: 10px 16px; border-bottom: 1px solid #f0f0f0; font-size: 0.88rem; overflow-wrap: break-word; }
-  .budget-table td:last-child { text-align: right; font-weight: 600; color: var(--blue); }
-  .budget-table tr:hover td { background: #f8fbff; }
-  .budget-total td {
-    font-weight: 700;
-    color: var(--dark);
-    font-size: 0.95rem;
-    border-top: 2px solid var(--blue);
+    font-size: 0.86rem;
   }
 
   .overview-timeline { background:white; border-radius:16px; padding:24px; box-shadow:var(--shadow); }
@@ -645,7 +704,7 @@
       opacity: 0.82;
     }
     .overview-day span:first-child { font-size: 1.1rem; }
-    .budget-card { overflow: visible; }
+    .budget-card { overflow: visible; padding: 14px; }
     .budget-table,
     .budget-table thead,
     .budget-table tbody,
@@ -681,6 +740,46 @@
     .budget-table td:last-child { color: var(--blue); }
     .budget-total td { border-top: none; }
     .budget-total { border-color: rgba(0,119,182,0.28) !important; background: #f0f7ff !important; }
+    .budget-table tbody {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 9px;
+    }
+    .budget-table tfoot {
+      display: block;
+      margin-top: 12px;
+    }
+    .budget-table tr {
+      display: grid;
+      width: auto;
+      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-areas:
+        "category amount"
+        "desc desc";
+      gap: 3px 8px;
+      padding: 10px 12px;
+      margin-bottom: 0;
+    }
+    .budget-table td {
+      display: block;
+      width: auto;
+      padding: 0;
+      border: 0;
+      text-align: inherit !important;
+    }
+    .budget-table td::before {
+      content: none !important;
+      display: none !important;
+    }
+    .budget-table td:nth-child(1) { font-size: 0.84rem; }
+    .budget-table td:nth-child(2) { font-size: 0.75rem; }
+    .budget-table td:nth-child(3) {
+      justify-self: end;
+      padding: 2px 8px;
+      font-size: 0.74rem;
+      text-align: right !important;
+    }
+    .budget-total { padding: 12px !important; }
     .footer { padding: 24px 16px; line-height: 1.6; }
   }
 
@@ -703,6 +802,9 @@
     .day-dot { left: -25px; }
     .spot-icon { font-size: 1.5rem; }
     #sg-map-leaflet { height: 360px !important; }
+    .budget-card { padding: 12px; }
+    .budget-table tr { padding: 10px; }
+    .budget-table td:nth-child(3) { justify-self: start; }
   }
 </style>
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
