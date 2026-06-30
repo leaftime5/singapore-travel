@@ -433,6 +433,8 @@
     border-top: 2px solid var(--blue);
   }
 
+  .overview-timeline { background:white; border-radius:16px; padding:24px; box-shadow:var(--shadow); }
+
   /* ===== TIPS BAR ===== */
   .tips-bar {
     background: linear-gradient(135deg, #fff8e1, #fff3cd);
@@ -515,8 +517,68 @@
     #sg-map-leaflet { height: 420px !important; }
     .map-tabs { gap: 8px; }
     .map-filter-btn { padding: 6px 10px; font-size: 0.78rem; }
-    .budget-card { overflow-x: auto; }
-    .budget-table { min-width: 620px; }
+    .overview-timeline { padding: 18px !important; overflow: visible !important; }
+    .overview-timeline-inner { min-width: 0 !important; }
+    .overview-timeline-dates { display: none !important; }
+    .overview-timeline-body { display: block !important; }
+    .overview-timeline-label { display: none !important; }
+    .overview-days { display: grid !important; grid-template-columns: 1fr !important; gap: 10px !important; }
+    .overview-day {
+      width: 100% !important;
+      min-height: 0;
+      display: grid !important;
+      grid-template-columns: auto 1fr 1fr;
+      align-items: center !important;
+      gap: 8px !important;
+      padding: 12px 14px !important;
+      text-align: left !important;
+      font-size: 0.82rem !important;
+      line-height: 1.35;
+    }
+    .overview-day::before {
+      content: attr(data-date);
+      grid-column: 1 / -1;
+      font-size: 0.78rem;
+      font-weight: 700;
+      opacity: 0.82;
+    }
+    .overview-day span:first-child { font-size: 1.1rem; }
+    .budget-card { overflow: visible; }
+    .budget-table,
+    .budget-table thead,
+    .budget-table tbody,
+    .budget-table tfoot,
+    .budget-table tr,
+    .budget-table td { display: block; width: 100%; }
+    .budget-table { min-width: 0; }
+    .budget-table thead { display: none; }
+    .budget-table tbody tr,
+    .budget-table tfoot tr {
+      border: 1px solid #eef2f7;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+      background: #fff;
+    }
+    .budget-table td {
+      border-bottom: none;
+      padding: 4px 0;
+      font-size: 0.84rem;
+      text-align: left !important;
+    }
+    .budget-table td::before {
+      display: block;
+      margin-bottom: 2px;
+      color: #7a8794;
+      font-size: 0.72rem;
+      font-weight: 700;
+    }
+    .budget-table td:nth-child(1)::before { content: "项目"; }
+    .budget-table td:nth-child(2)::before { content: "说明"; }
+    .budget-table td:nth-child(3)::before { content: "预估金额"; }
+    .budget-table td:last-child { color: var(--blue); }
+    .budget-total td { border-top: none; }
+    .budget-total { border-color: rgba(0,119,182,0.28) !important; background: #f0f7ff !important; }
     .footer { padding: 24px 16px; line-height: 1.6; }
   }
 
@@ -544,17 +606,59 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
-.route-diagram { margin:12px 0; background:white; border-radius:12px; padding:14px 10px 8px; overflow-x:auto; box-shadow:0 1px 6px rgba(0,0,0,0.05); -webkit-overflow-scrolling: touch; }
+.route-diagram { margin:12px 0; background:white; border-radius:12px; padding:14px 10px 8px; overflow:hidden; box-shadow:0 1px 6px rgba(0,0,0,0.05); }
 .route-diagram svg { display:block; min-width:100%; }
 .route-diagram-title { font-size:0.9rem; font-weight:700; color:#555; margin-bottom:8px; }
+.route-steps { display:grid; gap:0; padding:4px 0 2px; }
+.route-step { position:relative; display:grid; grid-template-columns:30px 1fr; gap:10px; padding:0 0 14px; }
+.route-step:last-child { padding-bottom:0; }
+.route-step::before { content:''; position:absolute; left:14px; top:28px; bottom:0; width:2px; background:var(--route-color); opacity:0.18; }
+.route-step:last-child::before { display:none; }
+.route-step-dot { width:28px; height:28px; border-radius:50%; background:white; border:2px solid var(--route-color); color:var(--route-color); display:flex; align-items:center; justify-content:center; font-size:0.76rem; font-weight:800; }
+.route-step:first-child .route-step-dot,
+.route-step:last-child .route-step-dot { background:var(--route-color); color:white; }
+.route-step-main { min-width:0; }
+.route-step-name { font-size:0.9rem; font-weight:700; color:#333; line-height:1.35; }
+.route-step-meta { display:flex; flex-wrap:wrap; gap:6px; margin-top:5px; }
+.route-step-time,
+.route-step-transport { border-radius:999px; padding:2px 8px; font-size:0.74rem; line-height:1.5; }
+.route-step-time { background:#f5f6f8; color:#6b7280; }
+.route-step-transport { background:color-mix(in srgb, var(--route-color) 12%, white); color:var(--route-color); font-weight:700; }
 @media(max-width: 768px) {
   .route-diagram { margin-left:-2px; margin-right:-2px; padding:12px 8px 8px; }
   .route-diagram-title { font-size:0.84rem; }
+  .route-diagram svg { min-width:0; width:100%; }
 }
 </style>
 <script>
+var routeDiagramData = {};
+
+function routeHtmlEscape(value) {
+  return String(value || '').replace(/[&<>"']/g, function(ch) {
+    return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch];
+  });
+}
+
 function drawRouteDiagram(cid, stops, color) {
+  routeDiagramData[cid] = { stops: stops, color: color };
   var c = document.getElementById(cid);
+  if (!c) return;
+  if (window.matchMedia && window.matchMedia('(max-width: 520px)').matches) {
+    var html = '<div class="route-steps" style="--route-color:'+color+'">';
+    for (var si=0; si<stops.length; si++) {
+      html += '<div class="route-step">';
+      html += '<div class="route-step-dot">'+(si+1)+'</div>';
+      html += '<div class="route-step-main">';
+      html += '<div class="route-step-name">'+routeHtmlEscape(stops[si].name)+'</div>';
+      html += '<div class="route-step-meta">';
+      if (stops[si].time) html += '<span class="route-step-time">'+routeHtmlEscape(stops[si].time)+'</span>';
+      if (stops[si].transport) html += '<span class="route-step-transport">'+routeHtmlEscape(stops[si].transport)+'</span>';
+      html += '</div></div></div>';
+    }
+    html += '</div>';
+    c.innerHTML = html;
+    return;
+  }
   var R=11, gap=130, pad=36;
   var n=stops.length, W=n*gap + pad*2, H=104;
   var lineY=32, nameY=64, tportY=17;
@@ -582,6 +686,16 @@ function drawRouteDiagram(cid, stops, color) {
   svg+='</svg>';
   c.innerHTML=svg;
 }
+
+window.addEventListener('resize', function() {
+  clearTimeout(window.__routeResizeTimer);
+  window.__routeResizeTimer = setTimeout(function() {
+    Object.keys(routeDiagramData).forEach(function(cid) {
+      var item = routeDiagramData[cid];
+      drawRouteDiagram(cid, item.stops, item.color);
+    });
+  }, 120);
+});
 </script>
 </head>
 <body>
@@ -629,9 +743,9 @@ function drawRouteDiagram(cid, stops, color) {
     </div>
 
     <!-- Overview Timeline Visual -->
-    <div style="background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);overflow-x:auto;">
-      <div style="min-width:700px;">
-        <div style="display:flex;gap:0;margin-bottom:12px;">
+    <div class="overview-timeline" style="background:white;border-radius:16px;padding:24px;box-shadow:var(--shadow);overflow-x:auto;">
+      <div class="overview-timeline-inner" style="min-width:700px;">
+        <div class="overview-timeline-dates" style="display:flex;gap:0;margin-bottom:12px;">
           <div style="width:80px;flex-shrink:0;"></div>
           <div style="flex:1;display:flex;">
             <div style="flex:1;text-align:center;font-size:0.78rem;color:#888;padding-bottom:8px;border-bottom:2px solid #e0e0e0;">7/16 周四</div>
@@ -643,30 +757,30 @@ function drawRouteDiagram(cid, stops, color) {
             <div style="flex:1;text-align:center;font-size:0.78rem;color:#888;padding-bottom:8px;border-bottom:2px solid #e0e0e0;">7/22 周三</div>
           </div>
         </div>
-        <div style="display:flex;gap:0;align-items:stretch;">
-          <div style="width:80px;flex-shrink:0;display:flex;flex-direction:column;gap:4px;justify-content:center;">
+        <div class="overview-timeline-body" style="display:flex;gap:0;align-items:stretch;">
+          <div class="overview-timeline-label" style="width:80px;flex-shrink:0;display:flex;flex-direction:column;gap:4px;justify-content:center;">
             <div style="font-size:0.78rem;color:#888;text-align:right;padding-right:10px;line-height:2.2;">主题</div>
           </div>
-          <div style="flex:1;display:flex;gap:4px;">
-            <div style="flex:1;background:linear-gradient(135deg,#0077b6,#00b4d8);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+          <div class="overview-days" style="flex:1;display:flex;gap:4px;">
+            <div class="overview-day" data-date="7/16" style="flex:1;background:linear-gradient(135deg,#0077b6,#00b4d8);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
               <span>✈️</span><span>抵达</span><span>星耀樟宜</span>
             </div>
-            <div style="flex:1;background:linear-gradient(135deg,#2a9d8f,#52b788);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+            <div class="overview-day" data-date="7/17" style="flex:1;background:linear-gradient(135deg,#2a9d8f,#52b788);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
               <span>🦁</span><span>鱼尾狮</span><span>滨海湾</span>
             </div>
-            <div style="flex:1;background:linear-gradient(135deg,#e63946,#f4a261);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+            <div class="overview-day" data-date="7/18" style="flex:1;background:linear-gradient(135deg,#e63946,#f4a261);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
               <span>🎢</span><span>圣淘沙</span><span>海洋馆</span>
             </div>
-            <div style="flex:1;background:linear-gradient(135deg,#7b2d8b,#9d4edd);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+            <div class="overview-day" data-date="7/19" style="flex:1;background:linear-gradient(135deg,#7b2d8b,#9d4edd);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
               <span>🌲</span><span>麦里芝</span><span>森林徒步</span>
             </div>
-            <div style="flex:1;background:linear-gradient(135deg,#f4a261,#e76f51);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+            <div class="overview-day" data-date="7/20" style="flex:1;background:linear-gradient(135deg,#f4a261,#e76f51);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
               <span>🐼</span><span>动物园</span><span>河川生态园</span>
             </div>
-            <div style="flex:1;background:linear-gradient(135deg,#e9c46a,#f4a261);border-radius:8px;padding:10px 6px;text-align:center;color:#333;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+            <div class="overview-day" data-date="7/21" style="flex:1;background:linear-gradient(135deg,#e9c46a,#f4a261);border-radius:8px;padding:10px 6px;text-align:center;color:#333;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
               <span>🌸</span><span>哈芝巷</span><span>植物园</span>
             </div>
-            <div style="flex:1;background:linear-gradient(135deg,#adb5bd,#6c757d);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
+            <div class="overview-day" data-date="7/22" style="flex:1;background:linear-gradient(135deg,#adb5bd,#6c757d);border-radius:8px;padding:10px 6px;text-align:center;color:white;font-size:0.75rem;font-weight:600;display:flex;flex-direction:column;gap:4px;align-items:center;">
               <span>🏠</span><span>返程</span><span>北京</span>
             </div>
           </div>
